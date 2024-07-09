@@ -1,99 +1,82 @@
-/* App.css */
+/* Global Styles */
 body {
-	background: linear-gradient(135deg, #000000, rgb(39, 34, 73));
-	color: #fff;
-	font-family: "Abel", sans-serif;
-  }
-  
+  background: linear-gradient(135deg, #000000, rgb(39, 34, 73));
+  color: #fff;
+  font-family: "Abel", sans-serif;
+}
+
 .app {
-	height: 100vh;
-	display: flex;
-	flex-direction: row;
-}
-
-.section-1{
-	border-right: 1px solid rgb(68, 48, 48);
-	width: 5%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-  
-.section-2 {
-	width: 85%;
-	padding-left: 40px;
-  padding-top: 20px;
-}
-.list-1{
-  padding-top: 5%;
-	display: flex;
-	flex-direction: row;
-	justify-content:left;
-}
-
-.list-2{
+  height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content:left;
-  padding-top: 5%; 
 }
-  
-.list-2 div{
+
+/* Section Styles */
+.section-1 {
+  border-right: 1px solid rgb(68, 48, 48);
+  width: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section-2 {
+  width: 85%;
+  padding: 20px 0 0 40px;
+  overflow-y: scroll;
+}
+
+.section-3 {
+  width: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* List Styles */
+.list-1,
+.list-2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding-top: 5%;
+}
+
+.list-2 div {
   width: 25%;
   padding-right: 25px;
 }
 
-.section-3{
-	width: 10%;
-	display: flex;
-	flex-direction: column;
-}
-
-
-/* css button start */
-
-
-.btn{
+/* Button Styles */
+.btn {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-top: 30px;
+  padding-top: 40px;
+  padding-right: 30px;
   --glow-color: hsl(186 100% 69%);
 }
-
-
-
 
 .glowing-btn {
   color: var(--glow-color);
   cursor: pointer;
   width: 20%;
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
   border: 0.05em solid var(--glow-color);
   background: none;
   perspective: 2em;
   font-size: large;
   font-weight: 500;
   text-align: center;
-
-  -webkit-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
-  -moz-box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
   box-shadow: inset 0px 0px 0.5em 0px var(--glow-color),
-    0px 0px 0.5em 0px var(--glow-color);
+              0px 0px 0.5em 0px var(--glow-color);
   animation: border-flicker 2s linear infinite;
 }
 
 .glowing-txt {
   text-align: center;
   margin-right: -0.8em;
-  -webkit-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em var(--glow-color);
-  -moz-text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
-    0 0 0.45em var(--glow-color);
-  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em var(--glow-color);
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3),
+               0 0 0.45em var(--glow-color);
   animation: text-flicker 3s linear infinite;
 }
 
@@ -101,20 +84,8 @@ body {
   opacity: 0.5;
   animation: faulty-flicker 2s linear infinite;
 }
-.glowing-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  opacity: 0.7;
-  filter: blur(.5em);
-  transform: translateY(120%) rotateX(95deg) scale(1, 0.35);
-  background: var(--glow-color);
-  pointer-events: none;
-}
 
+.glowing-btn::before,
 .glowing-btn::after {
   content: "";
   position: absolute;
@@ -122,6 +93,17 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
+}
+
+.glowing-btn::before {
+  opacity: 0.7;
+  filter: blur(.5em);
+  transform: translateY(120%) rotateX(95deg) scale(1, 0.15);
+  background: var(--glow-color);
+  pointer-events: none;
+}
+
+.glowing-btn::after {
   opacity: 0;
   z-index: -1;
   background-color: var(--glow-color);
@@ -135,169 +117,89 @@ body {
   animation: none;
 }
 
-.glowing-btn:hover .glowing-txt {
-  animation: none;
-}
-
+.glowing-btn:hover .glowing-txt,
 .glowing-btn:hover .faulty-letter {
   animation: none;
   text-shadow: none;
   opacity: 1;
 }
 
-.glowing-btn:hover:before {
+.glowing-btn:hover::before {
   filter: blur(1.5em);
   opacity: 1;
 }
 
-.glowing-btn:hover:after {
+.glowing-btn:hover::after {
   opacity: 1;
 }
 
+/* Keyframes */
 @keyframes faulty-flicker {
-  0% {
-    opacity: 0.1;
-  }
-  2% {
-    opacity: 0.1;
-  }
-  4% {
-    opacity: 0.5;
-  }
-  19% {
-    opacity: 0.5;
-  }
-  21% {
-    opacity: 0.1;
-  }
-  23% {
-    opacity: 1;
-  }
-  80% {
-    opacity: 0.5;
-  }
-  83% {
-    opacity: 0.4;
-  }
-
-  87% {
-    opacity: 1;
-  }
+  0%, 2%, 21% { opacity: 0.1; }
+  4%, 19%, 23%, 87% { opacity: 1; }
+  80% { opacity: 0.5; }
+  83% { opacity: 0.4; }
 }
 
 @keyframes text-flicker {
-  0% {
-    opacity: 0.1;
-  }
-
-  2% {
-    opacity: 1;
-  }
-
-  8% {
-    opacity: 0.1;
-  }
-
-  9% {
-    opacity: 1;
-  }
-
-  12% {
-    opacity: 0.1;
-  }
-  20% {
-    opacity: 1;
-  }
-  25% {
-    opacity: 0.3;
-  }
-  30% {
-    opacity: 1;
-  }
-
-  70% {
-    opacity: 0.7;
-  }
-  72% {
-    opacity: 0.2;
-  }
-
-  77% {
-    opacity: 0.9;
-  }
-  100% {
-    opacity: 0.9;
-  }
+  0%, 8%, 12% { opacity: 0.1; }
+  2%, 9%, 20%, 30%, 100% { opacity: 1; }
+  25% { opacity: 0.3; }
+  70% { opacity: 0.7; }
+  72% { opacity: 0.2; }
+  77% { opacity: 0.9; }
 }
 
 @keyframes border-flicker {
-  0% {
-    opacity: 0.1;
-  }
-  2% {
-    opacity: 1;
-  }
-  4% {
-    opacity: 0.1;
-  }
-
-  8% {
-    opacity: 1;
-  }
-  70% {
-    opacity: 0.7;
-  }
-  100% {
-    opacity: 1;
-  }
+  0%, 4% { opacity: 0.1; }
+  2%, 8%, 100% { opacity: 1; }
+  70% { opacity: 0.7; }
 }
 
+/* Font Weight Utility Classes */
+.font-500 { font-weight: 500; }
+.font-600 { font-weight: 600; }
+.font-700 { font-weight: 700; }
+.font-800 { font-weight: 800; }
+.font-900 { font-weight: 900; }
+
+/* Font Size Utility Classes */
+.font-s { font-size: small; }
+.font-l { font-size: large; }
+.font-xl { font-size: x-large; }
+.font-xxl { font-size: xx-large; }
+
+/* Padding Utility Classes */
+.pading-top-90 {
+  padding-top: 90px;
+}
+
+/* Responsive Styles */
 @media only screen and (max-width: 600px) {
-  .glowing-btn{
+  .glowing-btn {
     font-size: 1em;
   }
 }
 
 
 
-/* css button end */
+/* Width of the scrollbar */
+::-webkit-scrollbar {
+  width: 2px; /* Adjust this value to set the desired width */
+}
 
+/* Background of the scrollbar track */
+::-webkit-scrollbar-track {
+  background: #000000; 
+}
 
+/* Handle of the scrollbar */
+::-webkit-scrollbar-thumb {
+  background: #dddddd; /* Optional: to give it a rounded look */
+  border-radius: 10px;
+}
 
-
-
-.font-800{
-    font-weight: 800;
-  }
-  .font-900{
-    font-weight: 900;
-  }
-  .font-700{
-    font-weight: 700;
-  }
-
-  .font-600{
-    font-weight: 600;
-  }
-
-  .font-500{
-    font-weight: 500;
-  }
-
-  .font-xxl{
-    font-size: xx-large;
-  }
-  .font-xl{
-    font-size: x-large;
-  }
-  .font-l{
-    font-size: large;
-  }
-  .font-s{
-    font-size: small;
-  }
-
-
-.pading-top-70{
-  padding-top: 70px;
+/* Handle of the scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #a29090; 
 }
